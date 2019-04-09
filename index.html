@@ -90,7 +90,7 @@
         InfoTabla();
       });
       button3.addEventListener('click', () => {
-	let estado = window.screen.type;
+	let estado = window.screen.orientation.type;
         if(estado == "landscape-primary") {
           c_estado1.innerText = "Orientacion : VERTICAL";
           button3.innerText = "Usar Horizontal";
