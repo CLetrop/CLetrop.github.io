@@ -48,6 +48,10 @@
       </table>
       <button id="button2">Usar Pantalla Completa</button>
       <div id="c_estado" style="display:inline-block">FullScreen : FALSE</div>
+      <br>
+      <br>
+      <button id="button3">Usar Horizontal</button>
+      <div id="c_estado1" style="display:inline-block">Orientacion : VERTICAL</div>
     </div>
     <script>
       var html = document.getElementById('html');
@@ -55,7 +59,9 @@
       var c_tbody1 = document.getElementById('c_tbody1');
       var button1 = document.getElementById('button1');
       var button2 = document.getElementById('button2');
+      var button3 = document.getElementById('button3');
       var c_estado = document.getElementById('c_estado');
+      var c_estado1 = document.getElementById('c_estado1');
       function InfoTabla() {
         const objeto_screen = window.screen;
         c_tbody.innerHTML = '';
@@ -79,6 +85,17 @@
           c_estado.innerText = "FullScreen : TRUE";
           button1.innerText = "Usar Pantalla Normal";
           html.requestFullscreen();
+        }
+        InfoTabla();
+      });
+      button3.addEventListener('click', () => {
+	let estado = window.screen.type;
+        if(estado == "landscape-primary") {
+          c_estado1.innerText = "Orientacion : VERTICAL";
+          button3.innerText = "Usar Horizontal";
+        } else {
+          c_estado1.innerText = "Orientacion : HORIZONTAL";
+          button3.innerText = "Usar Vertical";
         }
         InfoTabla();
       });
