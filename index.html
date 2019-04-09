@@ -8,14 +8,54 @@
         margin: 0;
         padding: 0;
         box-sizing: border-box;
+        font-family: consolas;
       }
-      
-      body {
-        background-color: white;
-      }
+      body {background-color: #ccc;}
+      img {height: 100%}
+      header {display: flex; justify-content: center;padding: 20px;}
+      .c_img {width: 100px;height: 100px;border-radius: 50%; overflow: hidden;}
+      .c_contenido {width: 90%;margin: 0 0 0 5%;}
+      table {background-color: #fff;display: flex; flex-wrap: wrap;margin: 0 0 20px 0;border-radius: 10px; overflow: hidden;}
+      thead {background-color: #3498db; width: 100%; display: table;padding: 10px;}
+      thead > tr > td {color: #fff;font-size: 1.5em;}
+      tbody {width: 100%; display: table;padding:10px;}
     </style>
   </head>
   <body>
-    <h1>Hello Word</h1>
+    <header>
+      <div class="c_img"><img src="favicon.png"></div>
+    </header>
+    <div class="c_contenido" id="c_contenido">
+      <table>
+        <thead>
+          <tr>
+            <td>Nombre</td>
+            <td>Contenido</td>
+          </tr>
+        </thead>
+        <tbody id="c_tbody"></tbody>
+      </table>
+      <table>
+        <thead>
+          <tr>
+            <td>Nombre</td>
+            <td>Contenido</td>
+          </tr>
+        </thead>
+        <tbody id="c_tbody1"></tbody>
+      </table>
+    </div>
+    <script>
+      var c_tbody = document.getElementById('c_tbody');
+      const objeto_screen = window.screen;
+      for (const propiedad in objeto_screen) {
+        c_tbody.innerHTML += '<tr><td>'+propiedad+'</td><td>'+objeto_screen[propiedad]+'</td></tr>';
+      }
+      var c_tbody1 = document.getElementById('c_tbody1');
+      const objeto_screen_orientacion = window.screen.orientation;
+      for (const propiedad in objeto_screen_orientacion) {
+        c_tbody1.innerHTML += '<tr><td>'+propiedad+'</td><td>'+objeto_screen_orientacion[propiedad]+'</td></tr>';
+      }
+    </script>
   </body>
 </html>
