@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="es-hn">
+<html lang="es-hn" id="html">
   <head>
     <link rel="shortcut icon" type="image/png" href="favicon.png">
     <title>Prueba</title>
@@ -10,22 +10,24 @@
         box-sizing: border-box;
         font-family: consolas;
       }
-      body {background-color: #ccc;}
+      body {background-color: #ccc;padding: 0 0 100px 0;}
       img {height: 100%}
       header {display: flex; justify-content: center;padding: 20px;}
       .c_img {width: 100px;height: 100px;border-radius: 50%; overflow: hidden;}
       .c_contenido {width: 90%;margin: 0 0 0 5%;}
-      table {background-color: #fff;display: flex; flex-wrap: wrap;margin: 0 0 20px 0;border-radius: 10px; overflow: hidden;}
+      table {background-color: #fff;display: flex; flex-wrap: wrap;margin: 20px 0 20px 0;border-radius: 10px; overflow: hidden;}
       thead {background-color: #3498db; width: 100%; display: table;padding: 10px;}
       thead > tr > td {color: #fff;font-size: 1.5em;}
       tbody {width: 100%; display: table;padding:10px;}
+      button {background-color:#2c3e50;color:#fff;padding:5px 20px;border-radius:12px;border:none;}
     </style>
   </head>
-  <body>
+  <body id="body">
     <header>
       <div class="c_img"><img src="favicon.png"></div>
     </header>
     <div class="c_contenido" id="c_contenido">
+      <button id="button1">Actualizar Tabla</button>
       <table>
         <thead>
           <tr>
@@ -44,18 +46,43 @@
         </thead>
         <tbody id="c_tbody1"></tbody>
       </table>
+      <button id="button2">Usar Pantalla Completa</button>
+      <div id="c_estado" style="display:inline-block">FullScreen : FALSE</div>
     </div>
     <script>
+      var html = document.getElementById('html');
       var c_tbody = document.getElementById('c_tbody');
-      const objeto_screen = window.screen;
-      for (const propiedad in objeto_screen) {
-        c_tbody.innerHTML += '<tr><td>'+propiedad+'</td><td>'+objeto_screen[propiedad]+'</td></tr>';
-      }
       var c_tbody1 = document.getElementById('c_tbody1');
-      const objeto_screen_orientacion = window.screen.orientation;
-      for (const propiedad in objeto_screen_orientacion) {
-        c_tbody1.innerHTML += '<tr><td>'+propiedad+'</td><td>'+objeto_screen_orientacion[propiedad]+'</td></tr>';
+      var button1 = document.getElementById('button1');
+      var button2 = document.getElementById('button2');
+      var c_estado = document.getElementById('c_estado');
+      function InfoTabla() {
+        const objeto_screen = window.screen;
+        c_tbody.innerHTML = '';
+        c_tbody1.innerHTML = '';
+        for (const propiedad in objeto_screen) {
+          c_tbody.innerHTML += '<tr><td>'+propiedad+'</td><td>'+objeto_screen[propiedad]+'</td></tr>';
+        }
+        const objeto_screen_orientacion = window.screen.orientation;
+        for (const propiedad in objeto_screen_orientacion) {
+          c_tbody1.innerHTML += '<tr><td>'+propiedad+'</td><td>'+objeto_screen_orientacion[propiedad]+'</td></tr>';
+        }
       }
+      button1.addEventListener('click', InfoTabla);
+      button2.addEventListener('click', () => {
+	let estado = document.fullscreen;
+        if(estado == true) {
+          c_estado.innerText = "FullScreen : FALSE";
+          button1.innerText = "Usar Pantalla Completa";
+          document.exitFullscreen();
+        } else {
+          c_estado.innerText = "FullScreen : TRUE";
+          button1.innerText = "Usar Pantalla Normal";
+          html.requestFullscreen();
+        }
+        InfoTabla();
+      });
+      InfoTabla();
     </script>
   </body>
 </html>
