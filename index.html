@@ -52,6 +52,7 @@
       <br>
       <button id="button3">Usar Horizontal</button>
       <div id="c_estado1" style="display:inline-block">Orientacion : VERTICAL</div>
+	    nueva
     </div>
     <script>
       var html = document.getElementById('html');
@@ -90,14 +91,15 @@
       });
       button3.addEventListener('click', () => {
 	let estado = window.screen.type;
+        if(estado == "landscape-primary") {
+          c_estado1.innerText = "Orientacion : VERTICAL";
+          button3.innerText = "Usar Horizontal";
+          window.screen.lockOrientation('portrait-primary');
+        }
         if(estado == "portrait-primary") {
           c_estado1.innerText = "Orientacion : VERTICAL";
           button3.innerText = "Usar Horizontal";
           window.screen.lockOrientation('landscape-primary');
-        } else {
-          c_estado1.innerText = "Orientacion : HORIZONTAL";
-          button3.innerText = "Usar Vertical";
-          window.screen.lockOrientation('portrait-primary');
         }
         InfoTabla();
       });
