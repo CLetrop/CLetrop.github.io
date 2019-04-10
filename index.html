@@ -89,10 +89,9 @@
           c_tbody1.innerHTML += '<tr><td>'+propiedad+'</td><td>'+objeto_screen_orientacion[propiedad]+'</td></tr>';
         }
       }
-
-      button1.addEventListener('click', InfoTabla);
-      button2.addEventListener('click', () => {
-	let estado = document.fullscreen;
+      
+      function Estado() {
+        let estado = document.fullscreen;
         if(estado == true) {
           button2_img.src = "img/icon-1.png";
           ccb_button.style.width = "0px";
@@ -103,7 +102,10 @@
           html.requestFullscreen();
         }
         InfoTabla();
-      });
+      }
+
+      button1.addEventListener('click', InfoTabla);
+      button2.addEventListener('click', Estado);
 
       button3.addEventListener('click', () => {
         window.screen.orientation.lock('portrait-primary');
@@ -122,6 +124,18 @@
       
       button6.addEventListener('click', () => {
         window.screen.orientation.lock('landscape-secondary');
+        InfoTabla();
+      });
+      
+      document.addEventListener("fullscreenchange", () => {
+        let estado = document.fullscreen;
+        if(estado == true) {
+          button2_img.src = "img/icon-2.png";
+          ccb_button.style.width = "auto";
+        } else {
+          button2_img.src = "img/icon-1.png";
+          ccb_button.style.width = "0px";
+        }
         InfoTabla();
       });
       
