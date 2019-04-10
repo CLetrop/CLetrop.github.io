@@ -70,6 +70,10 @@
       var button2 = document.getElementById('button2');
       var button2_img = document.getElementById('button2_img');
       var ccb_button = document.getElementById('ccb_button');
+      var button3 = document.getElementById('button3');
+      var button4 = document.getElementById('button4');
+      var button5 = document.getElementById('button5');
+      var button6 = document.getElementById('button6');
 
       function InfoTabla() {
         const objeto_screen = window.screen;
@@ -91,31 +95,34 @@
           button2_img.src = "img/icon-1.png";
           ccb_button.style.width = "0px";
           document.exitFullscreen();
-	  if('orientation' in screen) {alert("esta");}
         } else {
           button2_img.src = "img/icon-2.png";
           ccb_button.style.width = "auto";
           html.requestFullscreen();
-          if('orientation' in screen) {alert("esta");}
         }
         InfoTabla();
       });
 
       button3.addEventListener('click', () => {
-	let estado = window.screen.orientation.type;
-        if(estado == "landscape-primary") {
-          c_estado1.innerText = "Orientacion : VERTICAL";
-          button3.innerText = "Usar Horizontal";
-          window.screen.lockOrientation('portrait-primary');
-        }
-        if(estado == "portrait-primary") {
-          c_estado1.innerText = "Orientacion : VERTICAL";
-          button3.innerText = "Usar Horizontal";
-          window.screen.lockOrientation('landscape-primary');
-        }
+        window.screen.orientation.lock('portrait-primary');
         InfoTabla();
       });
-
+      
+      button4.addEventListener('click', () => {
+        window.screen.orientation.lock('portrait-secondary');
+        InfoTabla();
+      });
+      
+      button5.addEventListener('click', () => {
+        window.screen.orientation.lock('landscape-primary');
+        InfoTabla();
+      });
+      
+      button6.addEventListener('click', () => {
+        window.screen.orientation.lock('landscape-secondary');
+        InfoTabla();
+      });
+      
       InfoTabla();
     </script>
   </body>
