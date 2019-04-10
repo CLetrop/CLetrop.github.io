@@ -1,6 +1,7 @@
 <!DOCTYPE html>
 <html lang="es-hn" id="html">
   <head>
+    <meta name="viewport" content="width=device-width, user-scalable=no">
     <link rel="shortcut icon" type="image/png" href="favicon.png">
     <title>Prueba</title>
     <style>
@@ -19,7 +20,7 @@
       thead {background-color: #3498db; width: 100%; display: table;padding: 10px;}
       thead > tr > td {color: #fff;font-size: 1.5em;}
       tbody {width: 100%; display: table;padding:10px;}
-      .cc_button {display: flex;}
+      .cc_button {display: flex;flex-wrap:wrap;}
       button {display:flex;align-items:center;justify-content:center;background-color:#2c3e50;color:#fff;font-size:1em;margin:5px;padding:5px 20px;border-radius:20px;border:none;}
       .ccb_button {display:flex;width:0;overflow:hidden;}
     </style>
@@ -39,6 +40,7 @@
         </thead>
         <tbody id="c_tbody"></tbody>
       </table>
+      <h2>Objeto Screen.Orientation</h2>
       <table>
         <thead>
           <tr>
