@@ -19,15 +19,17 @@
       thead {background-color: #3498db; width: 100%; display: table;padding: 10px;}
       thead > tr > td {color: #fff;font-size: 1.5em;}
       tbody {width: 100%; display: table;padding:10px;}
-      button {background-color:#2c3e50;color:#fff;padding:5px 20px;border-radius:12px;border:none;}
+      .cc_button {display: flex;}
+      button {display:flex;align-items:center;justify-content:center;background-color:#2c3e50;color:#fff;font-size:1em;margin:5px;padding:5px 20px;border-radius:20px;border:none;}
+      .ccb_button {display:flex;width:0;overflow:hidden;}
     </style>
   </head>
   <body id="body">
     <header>
       <div class="c_img"><img src="favicon.png"></div>
     </header>
-    <div class="c_contenido" id="c_contenido">
-      <button id="button1">Actualizar Tabla</button>
+    <div class="c_contenido">
+      <h2>Objeto Screen</h2>
       <table>
         <thead>
           <tr>
@@ -46,13 +48,19 @@
         </thead>
         <tbody id="c_tbody1"></tbody>
       </table>
-      <button id="button2">Usar Pantalla Completa</button>
-      <div id="c_estado" style="display:inline-block">FullScreen : FALSE</div>
+      <div class="cc_button">
+        <button id="button1"><span>Actualizar</span> <img style="margin: 0 0 0 10px" src="img/icon-3.png"></button>
+        <button id="button2"><img id="button2_img" src="img/icon-1.png"></button>
+        <div class="ccb_button" id="ccb_button">
+          <button id="button3"><img src="img/icon-4.png"></button>
+          <button id="button4"><img src="img/icon-4.png" style="transform:rotate(180deg);"></button>
+          <button id="button5"><img src="img/icon-4.png" style="transform:rotate(90deg);"></button>
+          <button id="button6"><img src="img/icon-4.png" style="transform:rotate(270deg);"></button>
+        </div>
+      </div>
       <br>
       <br>
-      <button id="button3">Usar Horizontal</button>
-      <div id="c_estado1" style="display:inline-block">Orientacion : VERTICAL</div>
-	    nueva
+      <div>Icons made by <a href="https://www.flaticon.es/autores/pixel-buddha" title="Pixel Buddha">Pixel Buddha</a> from <a href="https://www.flaticon.es/" title="Flaticon">www.flaticon.com</a> is licensed by <a href="http://creativecommons.org/licenses/by/3.0/" title="Creative Commons BY 3.0" target="_blank">CC 3.0 BY</a></div>
     </div>
     <script>
       var html = document.getElementById('html');
@@ -60,9 +68,9 @@
       var c_tbody1 = document.getElementById('c_tbody1');
       var button1 = document.getElementById('button1');
       var button2 = document.getElementById('button2');
-      var button3 = document.getElementById('button3');
-      var c_estado = document.getElementById('c_estado');
-      var c_estado1 = document.getElementById('c_estado1');
+      var button2_img = document.getElementById('button2_img');
+      var ccb_button = document.getElementById('ccb_button');
+
       function InfoTabla() {
         const objeto_screen = window.screen;
         c_tbody.innerHTML = '';
@@ -75,20 +83,23 @@
           c_tbody1.innerHTML += '<tr><td>'+propiedad+'</td><td>'+objeto_screen_orientacion[propiedad]+'</td></tr>';
         }
       }
+
       button1.addEventListener('click', InfoTabla);
       button2.addEventListener('click', () => {
 	let estado = document.fullscreen;
         if(estado == true) {
-          c_estado.innerText = "FullScreen : FALSE";
-          button1.innerText = "Usar Pantalla Completa";
+          button2_img.src = "img/icon-1.png";
+          ccb_button.style.width = "0px";
           document.exitFullscreen();
         } else {
-          c_estado.innerText = "FullScreen : TRUE";
-          button1.innerText = "Usar Pantalla Normal";
+          button2_img.src = "img/icon-2.png";
+          ccb_button.style.width = "auto";
           html.requestFullscreen();
+          if('orientation' in screen) {console.log("esta");}
         }
         InfoTabla();
       });
+
       button3.addEventListener('click', () => {
 	let estado = window.screen.orientation.type;
         if(estado == "landscape-primary") {
@@ -103,6 +114,7 @@
         }
         InfoTabla();
       });
+
       InfoTabla();
     </script>
   </body>
