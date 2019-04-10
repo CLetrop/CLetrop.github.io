@@ -91,6 +91,7 @@
           button2_img.src = "img/icon-1.png";
           ccb_button.style.width = "0px";
           document.exitFullscreen();
+	  if('orientation' in screen) {console.log("esta");}
         } else {
           button2_img.src = "img/icon-2.png";
           ccb_button.style.width = "auto";
